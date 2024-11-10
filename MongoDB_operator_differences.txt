@@ -1,26 +1,25 @@
 [{
-  "_id": "6730d2ce7625e46f6eefe987"
+  "_id": "1"
   "data": [20,40,60]
-}
-
+},
 {
-  "_id": "6730d3137625e46f6eefe988",
+  "_id": "2",
   "data": [40,60,10]
 }]
 
 *****Difference between the $in and $all operator******
-$in : Find documents that contain an exact match with any of the given elements
-$all : Find documents that exactly match every element from the given set
+$in : Return the results where the document contains at least one exact match from the specified elements
+$all : Return documents that contain exact matches for all the specified elements.
 
 //-----------$in------------//
 find({ data: {$in: [20,40,60] }})
 Output:
 [{
-  "_id": "6730d2ce7625e46f6eefe987"
+  "_id": "1"
   "data": [20,40,60]
 }
 {
-  "_id": "6730d3137625e46f6eefe988",
+  "_id": "2",
   "data": [40,60,10]
 }]
 
@@ -28,11 +27,44 @@ Output:
 find({ data: {$all: [20,40,60] }})
 Output:
 {
-  "_id": "6730d2ce7625e46f6eefe987"
+  "_id": "1"
   "data": [20,40,60]
 }
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+*****Difference between the without $all and with $all operator******
+[{
+  "id":1
+  "data": ["red", "blue"]
+},
+{
+  "id":1
+  "data": ["blue", "red"]
+}]
 
+without $all : Return documents which docs contains exact match element with position
+$all : Return documents that contain exact matches for all the specified elements.
 
+//----------without $all------------//
+find({data:['red','blue']}) 
+Output:
+{
+  "id":1
+  "data": ["red", "blue"]
+}
+
+//-----------with $all------------//
+find({data:{$all:['red','blue']}})
+Output:
+[{
+  "id":1
+  "data": ["red", "blue"]
+},
+{
+  "id":1
+  "data": ["blue", "red"]
+}]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
