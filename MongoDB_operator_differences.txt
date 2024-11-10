@@ -8,7 +8,9 @@
   "data": [40,60,10]
 }]
 
-Difference between the $in and $all operator
+*****Difference between the $in and $all operator******
+$in : Find documents that contain an exact match with any of the given elements
+$all : Find documents that exactly match every element from the given set
 
 //-----------$in------------//
 find({ data: {$in: [20,40,60] }})
@@ -22,7 +24,6 @@ Output:
   "data": [40,60,10]
 }]
 
-
 //-----------$all------------//
 find({ data: {$all: [20,40,60] }})
 Output:
@@ -31,9 +32,6 @@ Output:
   "data": [20,40,60]
 }
 
-****Explanations***:
-$in : Find documents that contain an exact match with any of the given elements
-$all : Find documents that exactly match every element from the given set
 
 
 
