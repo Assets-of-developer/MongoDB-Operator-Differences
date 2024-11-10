@@ -1,4 +1,4 @@
-{
+[{
   "_id": "6730d2ce7625e46f6eefe987"
   "data": [20,40,60]
 }
@@ -6,44 +6,33 @@
 {
   "_id": "6730d3137625e46f6eefe988",
   "data": [40,60,10]
-}
+}]
 
-Difference between $in and $all
+Difference between the $in and $all operator
 
-$in:
-
+//-----------$in------------//
 find({ data: {$in: [20,40,60] }})
-
-//Output
-
-{
+Output:
+[{
   "_id": "6730d2ce7625e46f6eefe987"
   "data": [20,40,60]
 }
-
 {
   "_id": "6730d3137625e46f6eefe988",
   "data": [40,60,10]
-}
+}]
 
 
-$all:
-
-{ data: {$all: [20,40,60] }}
-
-
-//Output
-
+//-----------$all------------//
+find({ data: {$all: [20,40,60] }})
+Output:
 {
   "_id": "6730d2ce7625e46f6eefe987"
   "data": [20,40,60]
 }
 
-
-Explanations:
-
+****Explanations***:
 $in : Find documents that contain an exact match with any of the given elements
-
 $all : Find documents that exactly match every element from the given set
 
 
