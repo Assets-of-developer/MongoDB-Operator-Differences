@@ -1,0 +1,51 @@
+{
+  "_id": "6730d2ce7625e46f6eefe987"
+  "data": [20,40,60]
+}
+
+{
+  "_id": "6730d3137625e46f6eefe988",
+  "data": [40,60,10]
+}
+
+Difference between $in and $all
+
+$in:
+
+find({ data: {$in: [20,40,60] }})
+
+//Output
+
+{
+  "_id": "6730d2ce7625e46f6eefe987"
+  "data": [20,40,60]
+}
+
+{
+  "_id": "6730d3137625e46f6eefe988",
+  "data": [40,60,10]
+}
+
+
+$all:
+
+{ data: {$all: [20,40,60] }}
+
+
+//Output
+
+{
+  "_id": "6730d2ce7625e46f6eefe987"
+  "data": [20,40,60]
+}
+
+
+Explanations:
+
+$in : Find documents that contain an exact match with any of the given elements
+
+$all : Find documents that exactly match every element from the given set
+
+
+
+
