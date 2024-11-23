@@ -67,4 +67,68 @@ Output:
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+*****Difference between the $ne and $not operator******
+
+[{
+  "id":1,
+  "data": 12,
+  "status":1
+},
+{
+  "id":2,
+  "data": 20,
+  "status":2
+},
+{
+    "id":3,
+    "data": 22,
+    "status":1
+}]
+
+$ne : Return the results where the document contains not equal to our specified criteria.we cannot use operator expression like $gt,$lt
+$not : To return documents excluding those that match our criteria, use the $not operator with operators such as $gt and $lt. Keep in mind that $not cannot accept multiple logical conditions, or it will generate an error message like '$not argument must be a regex or an object'.
+
+//----------$ne------------//
+
+find({data:{$ne:12}})
+Output:
+[{
+    "id":2,
+    "data": 20
+},
+{
+    "id":3,
+    "data": 22,
+    "status":3
+}]
+
+find({data:{$ne:{$gt:20}}}) => This query is not expected to return the results we want
+
+//----------$not------------//
+find({data:{$not:{$lt:15}}})
+Output:
+[{
+    "id":2,
+    "data": 20,
+    "status":2
+},
+{
+    "id":3,
+    "data": 22,
+    "status":1
+}]
+
+find({data:{$not:[{$lt:15},{status:2}]}}) => throw error '$not argument must be a regex or an object'
+
+//----------$nor------------//
+if we want to use multiple logical operator we can use $not operator
+find({ $nor: [ { data: 12 }, { status: 1 } ] })
+$nor : Return the results where the document contains not equal to 12 and status not equal to 1
+find({ $nor: [ { data: 12 }, { status: 1 } ] })
+Output:
+{
+    "id":2,
+    "data": 20,
+    "status":2
+}
 
